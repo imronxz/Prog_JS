@@ -38,7 +38,7 @@ console.log(main, secondary);
 [main, secondary] = [secondary, main];
 console.log(main, secondary);
 
-// TODO indexing JS: Receiving 2 return values from a fucntion
+// TODO indexing JS: Receiving 2 return values from a function
 const [menuPembuka, menuUtama] = restaurant.order(2, 0);
 console.log(menuPembuka, menuUtama);
 
