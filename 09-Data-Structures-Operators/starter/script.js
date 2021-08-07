@@ -41,43 +41,8 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1},${ing2},${ing3}`);
+  }
 };
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Sarolangun',
-  mainIndex: 2,
-  starterIndex: 2,
-});
-
-restaurant.orderDelivery({
-  address: 'Concat',
-});
-
-// TODO m1
-const { name, openingHours, categories } = restaurant;
-console.log(name, openingHours, categories);
-
-// TODO* m2
-const {
-  name: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
-
-// TODO Default value
-const { menu = [], starterMenu: starters = [] } = restaurant;
-console.log(menu, starters);
-
-// TODO Mutating variables
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
-({ a, b } = obj); //Destructuring assignment into double parentheses
-console.log(a, b);
-
-// TODO Nested objects
-const {
-  fri: { open: o, close: c },
-} = openingHours;
-console.log(o, c);
