@@ -48,27 +48,3 @@ const restaurant = {
     console.log(mainIngredient, otherIngredients);
   },
 };
-
-// TODO Object.keys: Returns the names of the enumerable string properties and methods of an object.
-// ! Property NAMES / key of array properties
-const properties = Object.keys(openingHours);
-console.log(properties);
-
-let openStr = `we are open on ${properties.length} days: `;
-
-for (const day of properties) {
-  openStr += `${day},`;
-}
-console.log(openStr);
-
-// ! Property  Values / value of array properties
-const value = Object.values(openingHours);
-console.log(value);
-
-// ! Entire Object , keys and values
-const entries = Object.entries(openingHours);
-console.log(entries);
-
-for (const [key, { open, close }] of entries) {
-  console.log(`On ${key} we open at ${open} and close at ${close}`);
-}
