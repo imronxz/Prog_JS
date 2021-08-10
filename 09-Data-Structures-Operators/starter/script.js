@@ -51,10 +51,40 @@ const restaurant = {
   },
 };
 
-// restaurant.numGuests = 0;
-const guest = restaurant.numGuests || 10;
-console.log(guest);
+/*1. || Short circuiting  */
+// Use ANY data type, return ANY data type,
+//* return first true value or the last value is all of em are false
+console.log(3 || 'Jonas'); // return 3: first true value
+console.log('' || 'Jonas'); // return Jonas: first true value
+console.log(true || 0); //return true: first true value
+console.log(undefined || null); //false or null: null
 
-// Nullish: null and undefined (NOT 0 or '')
-const guestCorrect = restaurant.numGuests ?? 10;
-console.log(guestCorrect);
+console.log(undefined || 0 || '' || 'hello' || 23 ||
+  null); //return hello: first true
+
+// TODO Using ternary statement
+// numGuest doesn't exist', return 10: first true value
+// if true --> restaurant.numGuests, else return 10
+restaurant.numGuests = 0;
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1);
+
+// TODO Using || Operator
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
+
+/* 2. && Short circuiting */
+//* return first false value or the last value is all of em are true
+console.log('---AND---');
+console.log(0 && 'Jonas'); // return 0: first false value
+console.log(7 && 'Jonas'); // return Jonas: first false value
+console.log(true && 0); // return o: first false value
+console.log('Hello' && 23 && null && 'Jonas'); // return null: first false value
+
+// TODO Using statement
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+};
+
+// TODO Using && Operator
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
