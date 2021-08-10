@@ -48,28 +48,3 @@ const restaurant = {
     console.log(mainIngredient, otherIngredients);
   },
 };
-// Checking if restaurant.openingHours.mon exist
-if (restaurant.openingHours && restaurant.openingHours.mon) {
-  console.log(restaurant.openingHours.mon.open); // output: nothing
-}
-
-// TODO With Optional Change
-console.log(restaurant.openingHours.mon?.open); // output: undefined
-console.log(restaurant.openingHours?.mon?.open); // output: undefined
-
-// Example
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-// TODO Optional Chaining 1 Loops Array
-for (const day of days) {
-  console.log(day);
-  const open = restaurant.openingHours[day]?.open ?? 'closed';
-  console.log(`On ${day}, we open at ${open}`);
-}
-
-// TODO Optional Chaining 2 Object Method
-console.log(restaurant.order?.(0, 1) ?? 'Method does not exist'); // Exist
-console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method does not exist'); // Not exist
-
-// Arrays
-const user = [{ name: 'Jonas', email: 'imronxz@gmail.com' }];
-console.log(user[0]?.email ?? 'User Array empty'); //exist arrays
