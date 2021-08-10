@@ -51,9 +51,10 @@ const restaurant = {
   },
 };
 
-// TODO entries: Returns an iterable of key, value pairs for every entry in the array
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-for (const [i, el] of menu.entries()) {
-  console.log(`${i +1}: ${el}`);
-}
-console.log(...menu.entries());
+// restaurant.numGuests = 0;
+const guest = restaurant.numGuests || 10;
+console.log(guest);
+
+// Nullish: null and undefined (NOT 0 or '')
+const guestCorrect = restaurant.numGuests ?? 10;
+console.log(guestCorrect);
