@@ -1,0 +1,42 @@
+When USE Array VS Sets
+1. Array
+
+tasks = ['Code', 'Eat', Code];
+https://www.freecodecamp.org/news/manipulating-arrays-in-javascript/
+- Use when you need ordered list of values (might contain duplicates)
+- Use when you need to manipulate data
+
+2. Sets
+tasks = new Set(['Code', 'Eat', 'Code']);
+- Use when you need to work with unique values.
+- Use whe high-performance is really important-
+  (searching or deleting item from a sets is faster than arrays).
+- use to remove duplivates from arrays.
+
+WHen USE Objects VS Maps
+
+1. Objects
+task = {
+  task: 'Code',
+  date: 'today',
+  repeate: true
+};
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+- More 'traditional' key/value store('abused'objects)
+- Easier to write and access value with . and []
+- USE when you need to include function(methods)
+- Use when working with JSON (can convert to maps)
+
+2. Maps
+tasl = new Map([
+  ['task', 'Code'],
+  ['date', 'today'],
+  [false, 'Start Coding'],
+]);
+- Better performance
+- Keys can have any data type
+- Easier to iterate
+- Easy to compute size
+
+- USE when you simply need to map key to values
+- USe when you need keys that are not string
