@@ -2,42 +2,56 @@
 
 // TODO Working with strings
 const airline = 'TAP Air Portugal';
-const plane = 'A320';
+console.log(airline.toLowerCase()); //tap air portugal
+console.log(airline.toUpperCase()); //TAP AIR PORTUGAL
 
-console.log(plane[0]); //A
-console.log('B737'[0]); //B
+// FIx capitalization in name
+const passenger = 'Muhammad iMroN';
+const passengerLow = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLow[0].toUpperCase() + passengerLow.slice(1, 8);
+const passengerCorrect1 =
+  passengerLow[9].toUpperCase() + passengerLow.slice(10);
+console.log(passengerCorrect, passengerCorrect1); //Imron
 
-console.log(airline.length); //16
-console.log('B737'.length); //4
+// Comparing emails
+const email = 'hello@gmail.com';
+const loginEmail = 'Hello@Gmail.com\n';
+const normalizedLogin = loginEmail.toLowerCase().trim();
+console.log(normalizedLogin);
+console.log(email === normalizedLogin);
 
-console.log(airline.indexOf('A')); //First string
-console.log(airline.lastIndexOf('A')); //Last string
-console.log(airline.indexOf('Portugal')); //8
-// TODO slice return to a new string
-console.log(airline.slice(4));
-console.log(airline.slice(4, 7)); //start, end
+// replacing
+const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+console.log(priceUS);
 
-const airline1 = 'TAP Air Portugal';
-console.log(airline1.slice(0, airline1.indexOf(' '))); //TAP
-console.log(airline1.slice(airline1.lastIndexOf(' ') + 1)); //Portugal
+const announcement =
+  'All passengers come to boarding door 23, boarding door 23';
+console.log(announcement.replace('door', 'gate')); //.replace method
+console.log(announcement.replace(/door/g, 'gate')); //Regex
 
-console.log(airline1.slice(-2)); //al
-console.log(airline1.slice(1, -1)); //AP Air Portugal
-console.log(airline1.slice(-2)); //al
+// Booleans
+const plane = 'Airbus A320neo';
+console.log(plane.includes('A320')); //using includes
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Air')); //using startsWith
+// Case 1 using startsWith and endWith
+if (plane.startsWith('Airbus') && plane.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family\n');
+}
 
-// TODO String Object with slice
-const checkMiddleSeat = function (seat) {
-  // B and E are middle seats
-  const s = seat.slice(-1);
-  if (s === 'B' || s === 'E') console.log('You got the middle seat');
-  else console.log('You got lucky');
+// Case 2
+// menjadikan parameter items ke lowerCase ->
+// check string baggage apakah termasuk 'knife' or 'gun'
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are not allowed in this flight');
+  } else {
+    console.log('Welcome to aboard, have a good days!');
+  }
 };
-checkMiddleSeat('11B');
-checkMiddleSeat('23C');
-checkMiddleSeat('3E');
-
-console.log(new String('imron')); //[String: 'imron']
-console.log(typeof new String('imron')); //Object
-
-console.log(new String('imron').slice()); //imron
-console.log(typeof new String('imron').slice()); //string
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Sock and camera');
+checkBaggage('Got some snacks and a gun for protection');
