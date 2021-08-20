@@ -1,0 +1,44 @@
+
+// TODO**FIRST CLASS FUNCTION
+
+1. JS treats fucntion first-class citizen
+2. This means that fucntion are simply values
+3. Functions are just another 'type of object'
+
+- TODO Store function in variables or properties:
+const add = (a, b) => a + b;
+const counter = {
+  value: 23,
+  inc: function(){
+    this.value++;
+    };
+}
+
+- TODO Pass function as arguments to OTHER functions:
+const great = () => console.log('Hey Imron');
+btnClose.addEventListener('click', great);
+
+- TODO return function FROM function
+
+- TODO Call methods on function
+counter.inc.bind(someOtherObject);
+
+// TODO** HIGHER ORDER FUNCTIONS
+
+1. A function that receives another function as an
+   arguments, that returns a new function. or both
+2. This is only possible because of first-class function
+
+- TODO Functions that receives another function
+const great = () => console.log('Hey imron');
+btnClose.addEventListener( //--> addEventListener: Higher-order function
+  'click',
+  great); //--> great: Callback function
+
+- TODO Functions that returns new function
+function count(){ //--> is Higher order function
+  let counter = 0;
+  return function(){ //--> is Return function
+    counter++;
+  };
+}
