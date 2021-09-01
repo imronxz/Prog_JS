@@ -18,22 +18,28 @@ const account2 = {
   interestRate: 1.5,
   pin: 2222,
 };
-
 const account3 = {
+  owner: 'Muhammad Imron',
+  movements: [50000, 34000, -1500, -7900, -32100, -10000, 85000, -300],
+  interestRate: 1.5,
+  pin: 1234,
+};
+
+const account4 = {
   owner: 'Steven Thomas Williams',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
 };
 
-const account4 = {
+const account5 = {
   owner: 'Sarah Smith',
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
 };
 
-const accounts = [account1, account2, account3, account4];
+const accounts = [account1, account2, account3, account4, account5];
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
@@ -61,26 +67,27 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-/////////////////////////////////////////////////
-// LECTURES
-/////////////////////////////////////////////////
+// Creating DOM Elements
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdraw';
 
-// Map
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__value">${mov}</div>
+    </div>`;
 
-currencies.forEach(function (value, key, map) {
-  console.log(`${key}: ${value}`);
-});
+    // TODO Memasukkan var html ke index.html
+    /*
+    'afterbegin': Just inside the element, before its first child.
+    https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
+    */
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
 
-// Set
-const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
-console.log(currenciesUnique);
-currenciesUnique.forEach(function (value, _, map) {
-  console.log(`${value}: ${value}`);
-});
+displayMovements(account3.movements);
