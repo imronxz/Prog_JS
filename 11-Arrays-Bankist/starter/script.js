@@ -67,27 +67,30 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-// Creating DOM Elements
-const displayMovements = function (movements) {
-  containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
-    const type = mov > 0 ? 'deposit' : 'withdraw';
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-    const html = `
-    <div class="movements__row">
-      <div class="movements__type movements__type--${type}">${
-      i + 1
-    } ${type}</div>
-      <div class="movements__value">${mov}</div>
-    </div>`;
+//! MAP Method
+/* Map ==> Calls a defined callback function on each element of an array, and returns an array that contains the results */
+const eurToUsd = 1.1;
+/*
+const movementsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+*/
+// Arrow Methods
+const movementsUsd = movements.map(mov => mov * eurToUsd);
 
-    // TODO Memasukkan var html ke index.html
-    /*
-    'afterbegin': Just inside the element, before its first child.
-    https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
-    */
-    containerMovements.insertAdjacentHTML('afterbegin', html);
-  });
-};
+console.log(movements);
+console.log(movementsUsd);
 
-displayMovements(account3.movements);
+const movementsUSDfor = [];
+for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+console.log(movementsUSDfor);
+
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movements ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdraw'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementsDescriptions);
