@@ -18,22 +18,28 @@ const account2 = {
   interestRate: 1.5,
   pin: 2222,
 };
-
 const account3 = {
+  owner: 'Muhammad Imron',
+  movements: [50000, 34000, -1500, -7900, -32100, -10000, 85000, -300],
+  interestRate: 1.5,
+  pin: 1234,
+};
+
+const account4 = {
   owner: 'Steven Thomas Williams',
   movements: [200, -200, 340, -300, -20, 50, 400, -460],
   interestRate: 0.7,
   pin: 3333,
 };
 
-const account4 = {
+const account5 = {
   owner: 'Sarah Smith',
   movements: [430, 1000, 700, 50, 90],
   interestRate: 1,
   pin: 4444,
 };
 
-const accounts = [account1, account2, account3, account4];
+const accounts = [account1, account2, account3, account4, account5];
 
 // Elements
 const labelWelcome = document.querySelector('.welcome');
@@ -61,16 +67,30 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
-
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-/////////////////////////////////////////////////
+//! MAP Method
+/* Map ==> Calls a defined callback function on each element of an array, and returns an array that contains the results */
+const eurToUsd = 1.1;
+/*
+const movementsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+*/
+// Arrow Methods
+const movementsUsd = movements.map(mov => mov * eurToUsd);
+
+console.log(movements);
+console.log(movementsUsd);
+
+const movementsUSDfor = [];
+for (const mov of movements) movementsUSDfor.push(mov * eurToUsd);
+console.log(movementsUSDfor);
+
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `Movements ${i + 1}: You ${mov > 0 ? 'deposited' : 'withdraw'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementsDescriptions);
