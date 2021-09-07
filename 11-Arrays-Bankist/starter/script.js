@@ -67,20 +67,56 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// Creating DOM Elements
+const displayMovements = function (movements) {
+  containerMovements.innerHTML = '';
+  movements.forEach(function (mov, i) {
+    const type = mov > 0 ? 'deposit' : 'withdraw';
+
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${type}">${
+      i + 1
+    } ${type}</div>
+      <div class="movements__value">${mov}</div>
+    </div>`;
+
+    // TODO Memasukkan var html ke index.html
+    /*
+    'afterbegin': Just inside the element, before its first child.
+    https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML
+    */
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+
+displayMovements(account1.movements);
+
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} IDR`;
+};
+calcDisplayBalance(account2.movements);
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// The Filter method
-/* filter: Returns the elements of an array that meet the condition specified in a callback function.
- */
-const deposits = movements.filter(function (mov) {
-  return mov > 0;
-});
-console.log(movements); //[200, 450, -400, 3000, -650, -130, 70, 1300]
-console.log(deposits); //[200, 450, 3000, 70, 1300]
+// Reduce Methods
+console.log(movements);
+// accumulator -> SNOWBALL
+// const balance = movements.reduce(function (acc, cur, i, arr) {
+//   console.log(`Iteration ${i}: ${acc}`);
+//   return acc + cur;
+// }, 0);
+const balance = movements.reduce((acc, cur) => acc + cur, 0);
+console.log(balance);
 
-const depositsFor = [];
-for (const mov of movements) if (mov > 0) depositsFor.push(mov);
-console.log(depositsFor); //[200, 450, 3000, 70, 1300]
+let balance2 = 0;
+for (const mov of movements) balance2 += mov;
+console.log(balance2);
 
-const withdrawals = movements.filter(mov => mov < 0);
-console.log(withdrawals); //[-400, -650, -130]
+// Maximum value with reduce
+const max = movements.reduce((acc, mov) => {
+  if (acc > mov) return acc;
+  else return mov;
+}, movements[0]);
+console.log(max);
