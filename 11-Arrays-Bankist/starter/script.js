@@ -137,18 +137,14 @@ const createUsernames = function (accs) {
 createUsernames(accounts);
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// TODO Chaining Methods
-const eurToUsd = 1.1;
-// PIPELINE
-const totalDepositsUSD = movements
-  .filter(mov => mov > 0)
+// TODO FInd Methods
+/* FInd methods: Only return the first element on the array, yang menhasilkan output berupa object
+ */
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
 
-  /*TODO check value dari filter dan menggunakan map
-    .map((mov, i, arr) => {
-    console.log(arr);
-    return mov * eurToUsd;
-  }) */
-
-  .map(mov => mov * eurToUsd)
-  .reduce((acc, mov) => acc + mov, 0);
-console.log(totalDepositsUSD);
+console.log(accounts);
+// TODO Mencari spesifik value di objek menggunakan Find methods
+const account = accounts.find(acc => acc.owner === 'Muhammad Imron');
+console.log(account);
