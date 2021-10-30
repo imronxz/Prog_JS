@@ -249,7 +249,7 @@ btnSort.addEventListener('click', function (e) {
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-//*Separate callback
+// Separate callback
 console.log('*** Menggunakan Separated Callback ***');
 const deposit = mov => mov < 0;
 
