@@ -235,13 +235,6 @@ btnClose.addEventListener('click', function (e) {
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-// Separate callback
-console.log('*** Menggunakan Separated Callback ***');
-const deposit = mov => mov < 0;
-console.log(movements.some(deposit)); //true
-console.log(movements.every(deposit)); //false
-console.log(movements.filter(deposit)); // [-400, -650, -130]
-
 // TODO FLAT AND FLATMAP
 //*1 flat: Returns a new array with all sub-array elements concatenated into it recursively up to the specified depth
 // TODO Flat
