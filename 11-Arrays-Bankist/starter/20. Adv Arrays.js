@@ -254,9 +254,9 @@ const deposit = mov => mov < 0;
 
 //TODO CREATING ARRAY Bankist app with Array.from
 /*
- * METHODS I
- */
-/* labelBalance.addEventListener('click', function () {
+METHODS I
+*/
+labelBalance.addEventListener('click', function () {
   const movementsUI = Array.from(
     document.querySelectorAll('.movements__value'),
     el => Number(el.textContent.replace('€', ''))
@@ -265,11 +265,10 @@ const deposit = mov => mov < 0;
 
   // Methods 2 with
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
-}); */
-
+});
 /*
- * METHODS II
- */
+METHODS II
+*/
 labelBalance.addEventListener('click', function () {
   const movementsUI = Array.from(
     document.querySelectorAll('.movements__value')
@@ -279,3 +278,28 @@ labelBalance.addEventListener('click', function () {
   // Methods 2 with
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 });
+
+const arr = [1, 2, 3, 4, 5, 6];
+console.log(new Array(1, 2, 3, 4, 5, 6, 7));
+
+// TODO Fill Methods -> input value, slice array pertama, slice array kedua
+arr.fill(23, 2, 6);
+console.log(arr);
+
+//* TODO Empty arrays + fill method
+const x = new Array(7);
+console.log(x);
+// console.log(x.map(() => 5));
+
+// TODO Fill Methods -> input value, slice array pertama, slice array kedua
+x.fill(1, 3, 5);
+console.log(x);
+
+//* TODO Array.from
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+// using index parameter, function(_: any, i: number): number
+// (_) parameter means nothing or pass
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
