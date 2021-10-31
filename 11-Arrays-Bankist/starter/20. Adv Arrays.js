@@ -289,7 +289,6 @@ console.log(arr);
 //* TODO Empty arrays + fill method
 const x = new Array(7);
 console.log(x);
-// console.log(x.map(() => 5));
 
 // TODO Fill Methods -> input value, slice array pertama, slice array kedua
 x.fill(1, 3, 5);

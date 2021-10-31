@@ -95,6 +95,33 @@ sort array secara descending (dari value paling besar ke paling kecil), jika sal
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
+//TODO CREATING ARRAY DOM with Array.from
+/*
+ * METHODS I
+ */
+/* labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value'),
+    el => Number(el.textContent.replace('€', ''))
+  );
+  console.log(movementsUI);
+
+  // Methods 2 with
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+}); */
+
+/*
+ * METHODS II
+ */
+labelBalance.addEventListener('click', function () {
+  const movementsUI = Array.from(
+    document.querySelectorAll('.movements__value')
+  );
+  console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
+
+  // Methods 2 with
+  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
+});
 
 // TODO Hitung jumlah total value
 const calcDisplayBalance = function (acc) {
@@ -251,31 +278,3 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 //*Separate callback
 const deposit = mov => mov < 0;
-
-//TODO CREATING ARRAY Bankist app with Array.from
-/*
- * METHODS I
- */
-/* labelBalance.addEventListener('click', function () {
-  const movementsUI = Array.from(
-    document.querySelectorAll('.movements__value'),
-    el => Number(el.textContent.replace('€', ''))
-  );
-  console.log(movementsUI);
-
-  // Methods 2 with
-  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
-}); */
-
-/*
- * METHODS II
- */
-labelBalance.addEventListener('click', function () {
-  const movementsUI = Array.from(
-    document.querySelectorAll('.movements__value')
-  );
-  console.log(movementsUI.map(el => Number(el.textContent.replace('€', ''))));
-
-  // Methods 2 with
-  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
-});
