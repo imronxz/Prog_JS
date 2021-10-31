@@ -264,7 +264,6 @@ labelBalance.addEventListener('click', function () {
   console.log(movementsUI);
 
   // Methods 2 with
-  const movementsUI2 = [...document.querySelectorAll('.movements__value')];
 });
 /*
 METHODS II

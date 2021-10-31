@@ -108,9 +108,8 @@ sort array secara descending (dari value paling besar ke paling kecil), jika sal
 
   // Methods 2 with
   const movementsUI2 = [...document.querySelectorAll('.movements__value')];
-}); */
+});
 
-/*
  * METHODS II
  */
 labelBalance.addEventListener('click', function () {
