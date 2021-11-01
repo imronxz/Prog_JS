@@ -94,7 +94,7 @@ const displayMovements = function (movements, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-        <div class="movements__value">${mov}€</div>
+        <div class="movements__value">${mov.toFixed(2)}€</div>
       </div>
     `;
 
@@ -104,19 +104,19 @@ const displayMovements = function (movements, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance}€`;
+  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
-
+// TODO SUmmary
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes}€`;
+  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out)}€`;
+  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -126,7 +126,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest}€`;
+  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
 };
 
 const createUsernames = function (accs) {
@@ -152,7 +152,7 @@ const updateUI = function (acc) {
 };
 
 ///////////////////////////////////////
-// Event handlers
+//TODO Login Event handlers
 let currentAccount;
 
 btnLogin.addEventListener('click', function (e) {
@@ -180,6 +180,7 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
+// TODO Transfer
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
   const amount = +inputTransferAmount.value;
@@ -203,10 +204,11 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+// TODO LOAN
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = +inputLoanAmount.value;
+  const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
     // Add movement
@@ -218,6 +220,7 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.value = '';
 });
 
+// TODO Logout event handlers
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
 
@@ -251,37 +254,42 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-console.log(23 === 23.0);
+// TODO Math and Rounding
 
-// Base 10 -> 0 to 9. 1/10 = 0.1. 3/10 = 3.3333333
-console.log(0.1 + 0.2);
-console.log(0.1 + 0.2 === 0.3);
+console.log(Math.sqrt(25)); //5 -> bilangan kuadrat
+console.log(25 ** 1 / 2); //12.5
+console.log(8 ** (1 / 3)); //2
 
-// Conversing
-console.log(Number('23'));
-console.log(+'23');
+console.log(Math.max(5, 18, 23, 11, 2)); //23 -> nilai terbesar
+console.log(Math.max(5, 18, '23', 11, 2)); //23
+console.log(Math.max(5, 18, '23px', 11, 2)); //NaN
 
-// Parsing
-console.log(Number.parseInt('30px', 10));
-console.log(Number.parseInt('e23', 10));
+console.log(Math.min(5, 18, 23, 11, 2)); //2 -> nilai terkecil
 
-// parseFloat -> checking float value,
-// parseInt -> checking int value,
-// Name space from Number for parseFloat and parseInt
-console.log(Number.parseFloat('  2.5rem'));
-console.log(Number.parseInt('  2.5rem'));
+console.log(Math.PI * Number.parseFloat('10px') ** 2); //314.1592653589793
+console.log(Math.trunc(Math.random() * 6 + 1)); // ? (random 1-6)
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min) + 1) + min;
+console.log(randomInt(10, 20));
 
-// Using isNaN -> Check if value is NaN
-console.log(Number.isNaN(20));
-console.log(Number.isNaN('20'));
-console.log(Number.isNaN(+'20X'));
-console.log(Number.isNaN(23 / 0));
+// Rounding integers
 
-// Using isFinite -> Checking if value is number
-console.log(Number.isFinite(20));
-console.log(Number.isFinite('20'));
-console.log(Number.isFinite(+'20X'));
-console.log(Number.isFinite(23 / 0));
+console.log(Math.round(23.3)); //23
+console.log(Math.round(23.9)); //24
 
-console.log(Number.isInteger(23));
-console.log(Number.isInteger(23.0));
+console.log(Math.ceil(23.3)); //24
+console.log(Math.ceil(23.9)); //24
+
+console.log(Math.floor(23.3)); //23
+console.log(Math.floor('23.9')); //23
+
+console.log(Math.trunc(23.3)); //23
+
+console.log(Math.trunc(-23.3)); // -23
+console.log(Math.floor(-23.3)); //-24
+
+// Rounding decimal -> value dibelakang koma
+console.log((2.7).toFixed(0));
+console.log((2.7).toFixed(3));
+console.log((2.345).toFixed(2));
+console.log(+(2.7).toFixed(2));
