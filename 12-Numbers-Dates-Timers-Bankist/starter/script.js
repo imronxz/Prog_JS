@@ -180,6 +180,16 @@ btnLogin.addEventListener('click', function (e) {
   }
 });
 
+//TODO Balance Colors
+labelBalance.addEventListener('click', function () {
+  [...document.querySelectorAll('.movements__row')].forEach(function (row, i) {
+    // 0, 2, 4, 6
+    if (i % 2 === 0) row.style.backgroundColor = 'orangered';
+    // 0, 3, 6, 9
+    if (i % 3 === 0) row.style.backgroundColor = 'blue';
+  });
+});
+
 // TODO Transfer
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
@@ -254,42 +264,20 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-// TODO Math and Rounding
+// TODO The remainder Operator -> Nilai sisa
+console.log(5 % 2);
+console.log(5 / 2); // 5 = 2 * 2 + 1
 
-console.log(Math.sqrt(25)); //5 -> bilangan kuadrat
-console.log(25 ** 1 / 2); //12.5
-console.log(8 ** (1 / 3)); //2
+console.log(8 % 3);
+console.log(8 / 3); // 8 = 2 * 3 + 2
 
-console.log(Math.max(5, 18, 23, 11, 2)); //23 -> nilai terbesar
-console.log(Math.max(5, 18, '23', 11, 2)); //23
-console.log(Math.max(5, 18, '23px', 11, 2)); //NaN
+console.log(6 % 2);
+console.log(6 / 2);
 
-console.log(Math.min(5, 18, 23, 11, 2)); //2 -> nilai terkecil
-
-console.log(Math.PI * Number.parseFloat('10px') ** 2); //314.1592653589793
-console.log(Math.trunc(Math.random() * 6 + 1)); // ? (random 1-6)
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min) + 1) + min;
-console.log(randomInt(10, 20));
-
-// Rounding integers
-
-console.log(Math.round(23.3)); //23
-console.log(Math.round(23.9)); //24
-
-console.log(Math.ceil(23.3)); //24
-console.log(Math.ceil(23.9)); //24
-
-console.log(Math.floor(23.3)); //23
-console.log(Math.floor('23.9')); //23
-
-console.log(Math.trunc(23.3)); //23
-
-console.log(Math.trunc(-23.3)); // -23
-console.log(Math.floor(-23.3)); //-24
-
-// Rounding decimal -> value dibelakang koma
-console.log((2.7).toFixed(0));
-console.log((2.7).toFixed(3));
-console.log((2.345).toFixed(2));
-console.log(+(2.7).toFixed(2));
+const isEven = n => n % 2 === 0;
+const isEvent = function (n) {
+  return n % 2 === 0;
+};
+console.log(isEvent(8));
+console.log(isEven(23));
+console.log(isEven(5148));
