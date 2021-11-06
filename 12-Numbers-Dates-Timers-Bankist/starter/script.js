@@ -223,6 +223,7 @@ btnLogin.addEventListener('click', function (e) {
 
     // TODO Experimenting Internationalizing the app
     const now = new Date();
+
     const options = {
       hour: 'numeric',
       minute: 'numeric',
@@ -301,14 +302,16 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
+    setTimeout(function () {
+      // Add movement
+      currentAccount.movements.push(amount);
 
-    // Add Transfer dates
-    currentAccount.movementsDates.push(new Date().toISOString());
+      // Add Transfer dates
+      currentAccount.movementsDates.push(new Date().toISOString());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
