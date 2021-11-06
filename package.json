@@ -1,0 +1,25 @@
+{
+  "name": "jsp",
+  "version": "1.0.0",
+  "description": "This repo contains starter files and final code for all sections and projects contained in the course.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imronxz/Prog_JS.git"
+  },
+  "keywords": [
+    "bitch"
+  ],
+  "author": "dog",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imronxz/Prog_JS/issues"
+  },
+  "homepage": "https://github.com/imronxz/Prog_JS#readme",
+  "devDependencies": {
+    "eslint": "^8.1.0"
+  }
+}
