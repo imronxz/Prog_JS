@@ -96,34 +96,41 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
-// TODO DOM Traversing
-const h1 = document.querySelector('h1');
-// Going downwards: child
-console.log(h1.querySelectorAll('.highlight'));
-console.log(h1.childNodes);
-console.log(h1.children);
-h1.firstElementChild.style.color = 'white';
-h1.lastElementChild.style.color = 'orangered';
+// Tabbed Component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
 
-// GOing upwards: parents
-console.log(h1.parentNode);
-console.log(h1.parentElement);
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
 
-h1.closest('.header').style.background = 'var(--gradient-secondary)';
+  // Guard clause
+  if (!clicked) return;
 
-h1.closest('h1').style.background = 'var(--gradient-primary)';
+  // Remove Active Classes
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
 
-// Going sideways: siblings
-console.log(h1.previousElementSibling);
-console.log(h1.nextElementSibling);
+  // Activate tab
+  clicked.classList.add('operations__tab--active');
 
-console.log(h1.previousSibling);
-console.log(h1.nextSibling);
+  // Activate content areas
+  console.log(clicked.dataset.tab);
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
 
-// TODO
-console.log(h1.parentElement.children);
-[...h1.parentElement.children].forEach(el => {
-  if (el !== h1) {
-    (el.style.color = 'red'), (el.style.transform = 'scale(0.5)');
-  }
+  // TODO jika event target terdapat class operations__tab maka, setiap tabs yg memiliki function attribute (tab, i) maka,jika event rarget === tab maka, untuk setiap tabsContent yg memiliki function attribute (content) maka, hapus classList content class operations__content--active, else index tabContent tambahkan classList class operations__content--active.
+
+  /* if (e.target.classList.contains('operations__tab')) {
+    tabs.forEach(function (tab, i) {
+      if (e.target === tab) {
+        tabsContent.forEach(function (content) {
+          content.classList.remove('operations__content--active');
+        });
+        tabsContent[i].classList.add('operations__content--active');
+      }
+    });
+  } */
 });
