@@ -138,7 +138,7 @@ tabsContainer.addEventListener('click', function (e) {
 
 // TODO Passing Arguments to Event Handlers
 // TODO* Menu fade animation || Only 1 parameter
-const handleHover = function (e, opacity) {
+const handleHover = function (e) {
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
     const siblings = link.closest('.nav').querySelectorAll('.nav__link');
@@ -161,3 +161,15 @@ nav.addEventListener('mouseover', function (e) {
 // HACK with bind methods: passing args in eventHandlers
 nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
+
+// TODO Sticky Navigation
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+window.addEventListener('scroll', function () {
+  console.log(window.scrollY);
+  if (window.scrollY > initialCoords.top) {
+    nav.classList.add('sticky');
+  } else {
+    nav.classList.remove('sticky');
+  }
+});
