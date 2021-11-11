@@ -61,13 +61,12 @@ btnScrollTo.addEventListener('click', function (e) {
   */
 
   // TODO Behavior smooth
-  /*
+
   window.scrollTo({
     top: s1coords.top + window.scrollY,
     left: s1coords.left + window.scrollX,
     behavior: 'smooth',
   });
-   */
 
   // TODO modern scroll smoothing
   section1.scrollIntoView({
@@ -203,6 +202,7 @@ headerObserver.observe(header);
 
 // TODO Reveal section
 const allSections = document.querySelectorAll('.section');
+
 const revealSection = function (entries, observer) {
   const [entry] = entries;
   // console.log(entry);
@@ -219,3 +219,28 @@ allSections.forEach(function (section) {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
 });
+
+// TODO Lazy loading img great for performance, with specific image
+const imgTarget = document.querySelectorAll('img[data-src]');
+
+const loading = function (entries, observer) {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) return;
+
+  // * Replace src with data-src
+  entry.target.src = entry.target.dataset.src; // main src mengubah resolisi img dgn DOM
+
+  entry.target.addEventListener('load', () =>
+    entry.target.classList.remove('lazy-img')
+  );
+  observer.unobserve(entry.target);
+};
+const imgObserver = new IntersectionObserver(loading, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+imgTarget.forEach(img => imgObserver.observe(img));
