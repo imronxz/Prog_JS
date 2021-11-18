@@ -95,4 +95,5 @@ Array.prototype.unique = function () {
 console.log(arr.unique());
 
 const h1 = document.querySelector('h1');
+console.log(h1.__proto__);
 console.dir(x => x + 1);
