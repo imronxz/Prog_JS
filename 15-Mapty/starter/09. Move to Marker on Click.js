@@ -1,3 +1,32 @@
+// TODO Move to Marker on Click
+/*
+class Workout {
+  clicks = 0;
+  // TODO click
+  click() {
+    this.clicks++;
+  }
+}
+// TODO renderWorkouts methods
+_moveToPopup(e) {
+      const workoutEl = e.target.closest('.workout');
+      console.log(workoutEl);
+
+      if (!workoutEl) return;
+      const workout = this.#workouts.find(
+        work => work.id === workoutEl.dataset.id
+      );
+      console.log(workout);
+      this.#map.setView(workout.coords, this.#mapZoomLevel, {
+        animate: true,
+        pan: {
+          duration: 1,
+        },
+      });
+
+      TODO Using public interface
+      workout.click();
+*/
 'use strict';
 
 class Workout {
@@ -56,9 +85,9 @@ class Cycling extends Workout {
   }
 }
 
-// const run1 = new Running([-2.2875, 102.7146], 5.2, 24, 178);
-// const cyc1 = new Cycling([-2.2875, 102.7146], 27, 95, 520);
-// console.log(run1, cyc1);
+const run1 = new Running([-2.2875, 102.7146], 5.2, 24, 178);
+const cyc1 = new Cycling([-2.2875, 102.7146], 27, 95, 520);
+console.log(run1, cyc1);
 
 const form = document.querySelector('.form');
 const containerWorkouts = document.querySelector('.workouts');
@@ -77,16 +106,11 @@ class App {
   #workouts = [];
 
   constructor() {
-    // ? Get current position
     this._getPosition(); // immediately call the function
-    // ? Get local storage
-    this._getLocalStorage();
-
     // ? Handling submit form with marker
     form.addEventListener('submit', this._newWorkout.bind(this));
     // ? Handling change toggle elevation field
     inputType.addEventListener('change', this._toggleElevationField);
-    // ? Handling click on map
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
   }
 
@@ -122,12 +146,6 @@ class App {
 
     // * leaflet event(on): show form when click on map
     this.#map.on('click', this._showForm.bind(this));
-
-    // * render workout markers and workout
-    this.#workouts.forEach(work => {
-      this._renderWorkout(work);
-      this._renderWorkoutMarker(work);
-    });
   }
 
   // TODO showForm methods
@@ -202,6 +220,7 @@ class App {
 
     // * Add new object to the workout array
     this.#workouts.push(workout);
+    console.log(workout);
 
     // * Render workout on map as marker
     this._renderWorkoutMarker(workout);
@@ -213,9 +232,6 @@ class App {
 
     // *  Clear input fieldset
     this._hideForm();
-
-    // * Set local storage to all workouts methods
-    this._setLocalStorage();
   }
 
   // TODO renderWorkoutMarker methods
@@ -293,13 +309,13 @@ class App {
   // TODO renderWorkouts methods
   _moveToPopup(e) {
     const workoutEl = e.target.closest('.workout');
-    // console.log(workoutEl);
+    console.log(workoutEl);
 
     if (!workoutEl) return;
     const workout = this.#workouts.find(
       work => work.id === workoutEl.dataset.id
     );
-    // console.log(workout);
+    console.log(workout);
     this.#map.setView(workout.coords, this.#mapZoomLevel, {
       animate: true,
       pan: {
@@ -308,36 +324,7 @@ class App {
     });
 
     // * Using public interface
-    /*
-    Object that coming from local storage that will not inherited all the method that we did before
-    */
-    // workout.click();
-  }
-
-  // TODO setLocalStorage methods
-  _setLocalStorage() {
-    localStorage.setItem('workouts', JSON.stringify(this.#workouts));
-  }
-
-  // TODO getLocalStorage methods
-  _getLocalStorage() {
-    // * JSON.parse convert string to object
-    const data = JSON.parse(localStorage.getItem('workouts'));
-    // console.log(data);
-
-    if (!data) return;
-
-    // * Loop through data and render workout on map
-    this.#workouts = data;
-    this.#workouts.forEach(work => {
-      this._renderWorkout(work);
-    });
-  }
-
-  // TODO Delete workout methods
-  reset() {
-    localStorage.removeItem('workouts');
-    location.reload();
+    workout.click();
   }
 }
 
