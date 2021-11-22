@@ -1,3 +1,32 @@
+// TODO Move to Marker on Click
+/*
+class Workout {
+  clicks = 0;
+  // TODO click
+  click() {
+    this.clicks++;
+  }
+}
+// TODO renderWorkouts methods
+_moveToPopup(e) {
+      const workoutEl = e.target.closest('.workout');
+      console.log(workoutEl);
+
+      if (!workoutEl) return;
+      const workout = this.#workouts.find(
+        work => work.id === workoutEl.dataset.id
+      );
+      console.log(workout);
+      this.#map.setView(workout.coords, this.#mapZoomLevel, {
+        animate: true,
+        pan: {
+          duration: 1,
+        },
+      });
+
+      TODO Using public interface
+      workout.click();
+*/
 'use strict';
 
 class Workout {
