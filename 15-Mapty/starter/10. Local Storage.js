@@ -1,3 +1,4 @@
+// TODO Working with local storage
 'use strict';
 
 class Workout {
