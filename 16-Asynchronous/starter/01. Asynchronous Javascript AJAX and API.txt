@@ -1,0 +1,36 @@
+'use strict';
+
+TODO Asynchronous
+1) Asynchronous code is executed after a tast that runs in the background finished
+
+2) Asynchronous code is non-blocking
+
+3) Execution doesn't wait for an asynchronous task to finis its work;
+
+4) Callback function alone do NOT make code asynchronous!
+
+contoh:
+const img = document.querySelector('.dog');
+img.src = 'dog.jpg';
+img.addEventListener('load',function (){
+      img.classList.add('fadeIn');
+});
+p.style.width = '300px'
+
+TODO AJAX (Asynchronous Javascript And XML)
+Allows us to communicate with remote web server in an asynchronous way.
+With AJAX calls, we can request data from web server dynamically.
+
+(CLIENT) --> (WEB SERVER) : Asking for some data REQUEST(GET/POST)
+(CLIENT) <-- (WEB SERVER) : Sending data back RESPONSE
+
+TODO API (Application Programming Interface)
+1) PIece of software that can be used by another piece of software,
+   in order to allow applications to talk to each other;
+
+2) There are be many types of APIs in web development;
+   1. DOM API * 2. Geolocation API * 3 4. Online API
+
+3) Online API Application running on a server, that receives request for data, and sends data back as response;
+
+4) We can build our own web APIs (required back-end development, e.g with node js) or use 3rd-party APIs
