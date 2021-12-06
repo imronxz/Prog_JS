@@ -4,7 +4,6 @@ const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
 // TODO Insert to html
-
 const renderCountry = function (data, className = '') {
   const html = `
     <article class="country ${className}">
@@ -24,48 +23,34 @@ const renderCountry = function (data, className = '') {
   // countriesContainer.style.opacity = 1;
 };
 
+const request = fetch(`https://restcountries.com/v2/name/sg`);
+console.log(request);
+
 // TODO Render error UI
 const renderError = function (msg) {
   countriesContainer.insertAdjacentText('beforeend', msg);
   // countriesContainer.style.opacity = 1;
 };
 
-// TODO const getJSON
-const getJSON = function (url, errorMsg = 'Something went wrong') {
-  return fetch(url).then(response => {
-    if (!response.ok) throw new Error(`${errorMsg} (${response.status})`);
-
-    return response.json();
-  });
-};
-
 // TODO Async/Await MODERN
 const getCountryData = function (country) {
   // TODO Country 1
-  // * then: Attaches callbacks for the resolution and/or rejection of the Promise.
-
-  getJSON(
-    `https://restcountries.com/v2/name/${country}?fullText=true`,
-    'Country not found'
-  )
+  // * Attaches callbacks for the resolution and/or rejection of the Promise.
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    // * then: Attaches callbacks for the resolution and/or rejection of the Promise.
+    .then(response => response.json()) // JSON is new promises
     .then(data => {
-      console.log(data);
       renderCountry(data[0]);
-      // if (data && 'status' in data) {
-      //   throw new Error(data.message);
-      // }
+
       const neighbour = data[0].borders[0];
 
-      if (!neighbour) throw new Error('No neighbour Found!');
+      if (!neighbour) return;
 
       // TODO Country 2
       // ? always return a promise and then handle it outside by simply returning it(.then)
-      return getJSON(
-        `https://restcountries.com/v2/alpha/${neighbour}?fullText=true`,
-        'Country not found'
-      );
+      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
     })
-
+    .then(response => response.json())
     .then(data => renderCountry(data, 'neighbour'))
 
     //  * catch: callback for the rejection of the Promise. (error)
@@ -80,7 +65,7 @@ const getCountryData = function (country) {
     });
 };
 
-btn.addEventListener('click', () => getCountryData('indonesia'));
-// validCty.addEventListener('click', () => getCountryData('US'));
-// invalidCty.addEventListener('click', () => getCountryData('whwhwhw'));
-// getCountryData('australia');
+btn.addEventListener('click', function () {
+  getCountryData('indonesia');
+});
+getCountryData('seg');
