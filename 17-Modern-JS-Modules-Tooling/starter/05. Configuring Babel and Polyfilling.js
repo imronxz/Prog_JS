@@ -43,5 +43,5 @@ import 'core-js/stable';
 // import 'core-js/stable/promise';
 // import 'core-js/stable/array/find';
 
-// Polifilling async function
+// Polyfilling async function
 import 'regenerator-runtime/runtime';
