@@ -1,7 +1,7 @@
 import icons from 'url:../../img/icons.svg';
 import { Fraction } from 'fractional'; // js library Fractional provides a simple interface to add, subtract, multiply, and divide fractions.
 
-console.log(Fraction);
+// console.log(Fraction);
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
   #data;
