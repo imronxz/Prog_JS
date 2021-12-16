@@ -4,11 +4,11 @@ class SearchView {
   // TODO input search field
   getQuery() {
     const query = this._parentElement.querySelector('.search__field').value;
-    // this._clearInput();
+    this._clearInput();
     return query;
   }
 
-  clearInput() {
+  _clearInput() {
     this._parentElement.querySelector('.search__field').value = '';
   }
 
