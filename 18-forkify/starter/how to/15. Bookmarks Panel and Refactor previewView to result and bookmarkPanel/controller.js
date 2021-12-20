@@ -1,19 +1,17 @@
 import * as model from './model.js';
-import { MODAL_CLOSE_SEC } from './config.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultView.js';
+import bookmarkPanelView from './views/bookmarkPanelView.js';
 import paginationView from './views/paginationView.js';
-import bookmarksPanelView from './views/bookmarkPanelView.js';
-import addRecipeView from './views/addRecipeView.js';
 
 import 'core-js/stable'; // polyfill everything else
 import 'regenerator-runtime/runtime'; // for polyfilling async/await
 import { async } from 'regenerator-runtime';
 
-// if (module.hot) {
-//   module.hot.accept();
-// }
+if (module.hot) {
+  module.hot.accept();
+}
 
 // TODO controller core function
 
@@ -26,24 +24,24 @@ const controlRecipe = async function () {
 
     // * Checking id
     if (!id) return;
+
     // * spinner images from recipeView.js
     recipeView.renderSpinner();
 
-    // *0 update results view to mark selected search result
+    // * update results view to mark selected search result
     resultsView.update(model.getSearchResultPage());
 
-    // *1 update bookmarks panel views
-    bookmarksPanelView.update(model.state.bookmarks);
+    // * update bookmarks panel views
+    bookmarkPanelView.update(model.state.bookmarks);
 
-    // *2 Loading recipe promises async/await
+    // * Loading recipe promises async/await
     await model.loadRecipe(id);
 
-    // *3 Render recipe to UI from model.js and recipeView.js
+    // * Render recipe to UI from model.js and recipeView.js
     recipeView.render(model.state.recipe); // export default
     // const recipeView = new recipeView(model.state.recipe) // export Class
   } catch (error) {
     recipeView.renderErrorUI();
-    console.error(error);
   }
 };
 
@@ -109,55 +107,15 @@ const controlAddBookmark = function () {
   recipeView.update(model.state.recipe);
 
   // * render bookmark panel
-  bookmarksPanelView.render(model.state.bookmarks);
-};
-
-const controlBookmarksPanel = function () {
-  bookmarksPanelView.render(model.state.bookmarks);
-};
-
-const controlAddRecipe = async newRecipe => {
-  try {
-    // * Show loading spinner
-    addRecipeView.renderSpinner();
-
-    // * Upload the new Recipe data
-    await model.uploadRecipe(newRecipe);
-    console.log(model.state.recipe);
-
-    // * Render the new Recipe
-    recipeView.render(model.state.recipe);
-
-    // * Success message
-    addRecipeView.renderSuccessUI();
-
-    // * Render bookmark view
-    bookmarksPanelView.render(model.state.bookmarks);
-
-    // * Change ID in url
-    window.history.pushState(null, '', `#${model.state.recipe.id}`);
-    // window.history.back();
-
-    // * Close form window
-    setTimeout(() => {
-      addRecipeView.toggleWindow();
-    }, MODAL_CLOSE_SEC * 1000);
-  } catch (error) {
-    console.error(error);
-    addRecipeView.renderErrorUI(error.message);
-  }
-
-  // * Upload new Recipe Data
+  bookmarkPanelView.render(model.state.bookmarks);
 };
 
 // TODO init handlers event
 const init = function () {
-  bookmarksPanelView.addHandlerBookmarksPanel(controlBookmarksPanel);
   recipeView.addHandlerRender(controlRecipe);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerClick(controlPagination);
-  addRecipeView.addHandlerUpload(controlAddRecipe);
 };
 init();
